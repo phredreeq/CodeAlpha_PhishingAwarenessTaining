@@ -27,7 +27,6 @@ How to read a URL correctly (right-to-left from the first single slash), why HTT
 ### Social Engineering Psychology
 Six psychological levers attackers exploit: authority, urgency, fear, trust, curiosity, and reciprocity/greed. Understanding *why* these tactics work builds resistance to attacks a person has never seen before.
 
-
 ### Best Practices Checklist
 Ten actionable habits, from "pause when a message creates urgency" to "verify unusual requests through a second, separate channel."
 
@@ -38,21 +37,10 @@ Ten actionable habits, from "pause when a message creates urgency" to "verify un
 **10-Question Quiz:** Covers practical judgment calls (reading URLs, responding to unexpected MFA prompts, verifying unusual requests) rather than case-study trivia. Each answer gives immediate feedback with a short explanation, and a final score with a tailored message.
 
 ## How to Use
-1. Open `phishing_training.html` directly in any modern browser — no installation or server required.
+1. Open `phishing_training.html` directly in any modern browser. _No installation or server required_.
 2. Or open `Phishing_Awareness_Training.pptx` in PowerPoint for a presentation format.
 3. Work through the sections in order, try the Spot the Phish exercise, then take the quiz.
 
-## MITRE ATT&CK Mapping
-- **T1566 — Phishing** (Initial Access): the primary technique this training addresses, covering both email-based and website-based variants.
-- **T1598 — Phishing for Information** (Reconnaissance): covered conceptually in the social engineering section, where attackers gather information to make attacks more convincing (spear phishing).
-
-## References
-- Verizon 2025 Data Breach Investigations Report
-- U.S. Attorney's Office, Southern District of New York — Evaldas Rimasauskas case filings
-- RSA / Threatpost / Dark Reading — 2011 RSA SecurID breach reporting
-- CISA, Security Boulevard — Uber 2022 breach and MFA fatigue reporting
 
 ## Author
 Fredrick Agufenwa
-GitHub: [Phredreeq](https://github.com/Phredreeq)
-LinkedIn: [fredrick-agufenwa-09bab9165](https://linkedin.com/in/fredrick-agufenwa-09bab9165)
