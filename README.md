@@ -7,7 +7,7 @@ Phishing Awareness Training
 This project is a phishing awareness training package built for CodeAlpha's Cybersecurity Internship. It teaches non-technical and technical audiences alike how to recognize phishing emails and fake websites, understand the social engineering tactics attackers rely on, and apply concrete best practices to avoid falling victim. The training is delivered in two formats: a 15-slide presentation and a self-contained interactive web module with a hands-on "Spot the Phish" exercise and a 10-question knowledge-check quiz.
 
 ## Why This Matters
-Phishing is a form of social engineering — it targets people, not systems. Verizon's 2025 Data Breach Investigations Report found that 68% of breaches involved a human element, most often a phishing email. This training's goal is to reduce that risk by teaching recognizable, memorable patterns rather than abstract rules.
+Phishing is a form of social engineering; it targets people, not systems. This training's goal is to reduce the risk of being a victim by teaching recognizable and memorable patterns rather than abstract rules.
 
 ## Project Files
 - `Phishing_Awareness_Training.pptx` — 15-slide presentation covering all training content
@@ -27,10 +27,6 @@ How to read a URL correctly (right-to-left from the first single slash), why HTT
 ### Social Engineering Psychology
 Six psychological levers attackers exploit: authority, urgency, fear, trust, curiosity, and reciprocity/greed. Understanding *why* these tactics work builds resistance to attacks a person has never seen before.
 
-### Real-World Case Studies (verified, in presentation)
-1. **The $100M+ invoice scam (2013–2015):** Evaldas Rimasauskas impersonated a real Facebook/Google vendor using forged invoices — no malware, no hacking, just a convincing fake business relationship.
-2. **The 2011 RSA breach:** A single employee opened a malicious Excel attachment, leading to a breach of RSA's SecurID authentication technology used by thousands of organizations.
-3. **Uber's 2022 MFA fatigue attack:** Attackers bombarded a contractor with MFA push notifications, then impersonated IT support to get one approved — bypassing MFA without any malware.
 
 ### Best Practices Checklist
 Ten actionable habits, from "pause when a message creates urgency" to "verify unusual requests through a second, separate channel."
