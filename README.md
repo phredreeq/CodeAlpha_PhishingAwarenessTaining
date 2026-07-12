@@ -1,4 +1,4 @@
-# CodeAlpha Cybersecurity Internship — Task 2: Phishing Awareness Training
+# CodeAlpha Cybersecurity Internship Task 2: Phishing Awareness Training
 
 ## Project Title
 Phishing Awareness Training 
