@@ -1,7 +1,7 @@
 # CodeAlpha Cybersecurity Internship — Task 2: Phishing Awareness Training
 
 ## Project Title
-Phishing Awareness Training — Presentation & Interactive Module
+Phishing Awareness Training 
 
 ## What This Project Is About
 This project is a phishing awareness training package built for CodeAlpha's Cybersecurity Internship. It teaches non-technical and technical audiences alike how to recognize phishing emails and fake websites, understand the social engineering tactics attackers rely on, and apply concrete best practices to avoid falling victim. The training is delivered in two formats: a 15-slide presentation and a self-contained interactive web module with a hands-on "Spot the Phish" exercise and a 10-question knowledge-check quiz.
