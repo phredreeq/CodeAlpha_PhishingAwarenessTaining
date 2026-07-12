@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing Awareness Training | CodeAlpha</title>
+<style>
+  :root{
+    --navy:#1E2761;
+    --navy-dark:#12173F;
+    --navy-deeper:#0C0F2B;
+    --ice:#CADCFC;
+    --red:#E63946;
+    --red-dark:#C22B37;
+    --white:#FFFFFF;
+    --offwhite:#F7F8FC;
+    --gray:#5B6478;
+    --darktext:#1A1D2B;
+    --line:#E1E4EF;
+    --good:#1E7B4D;
+    --good-bg:#E7F6EE;
+    --bad-bg:#FCEAEC;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    color: var(--darktext);
+    background: var(--white);
+    line-height:1.5;
+  }
+  h1,h2,h3,h4{ font-family:'Cambria','Georgia',serif; margin:0; color:var(--navy); }
+  a{ color:inherit; }
+  ::selection{ background: var(--red); color:#fff; }
+  :focus-visible{ outline: 3px solid var(--red); outline-offset: 2px; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  /* NAV */
+  nav.topnav{
+    position:sticky; top:0; z-index:50;
+    background: var(--navy-deeper);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topnav-inner{
+    max-width:1080px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{ color:#fff; font-family:'Cambria',serif; font-weight:bold; font-size:17px; display:flex; align-items:center; gap:10px; }
+  .brand .dot{ width:10px; height:10px; border-radius:50%; background:var(--red); display:inline-block; }
+  .navlinks{ display:flex; gap:22px; list-style:none; margin:0; padding:0; }
+  .navlinks a{
+    text-decoration:none; color: var(--ice); font-size:14px; font-weight:600;
+    padding:6px 2px; border-bottom:2px solid transparent;
+  }
+  .navlinks a:hover{ border-bottom-color: var(--red); color:#fff; }
+
+  /* HERO */
+  .hero{
+    background: radial-gradient(1100px 500px at 85% -10%, var(--navy) 0%, var(--navy-dark) 45%, var(--navy-deeper) 100%);
+    color:#fff; padding: 96px 0 84px; position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:""; position:absolute; right:-120px; bottom:-160px; width:420px; height:420px;
+    border-radius:50%; background: rgba(255,255,255,0.04);
+  }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase; color: var(--red);
+    background: rgba(230,57,70,0.12); border:1px solid rgba(230,57,70,0.35);
+    padding:6px 14px; border-radius:999px; margin-bottom:22px;
+  }
+  .hero h1{
+    color:#fff; font-size:clamp(34px,5.2vw,56px); line-height:1.08; max-width:820px; letter-spacing:-0.01em;
+  }
+  .hero h1 em{ font-style:normal; color: var(--red); }
+  .hero p.lede{
+    color: var(--ice); font-size:19px; max-width:600px; margin-top:22px; font-family:'Calibri',sans-serif;
+  }
+  .hero .cta-row{ margin-top:36px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:14px 26px; border-radius:8px; font-weight:700; font-size:15px;
+    text-decoration:none; cursor:pointer; border:none; font-family:'Calibri',sans-serif;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--red); color:#fff; box-shadow:0 8px 20px rgba(230,57,70,0.35); }
+  .btn-primary:hover{ background: var(--red-dark); }
+  .btn-ghost{ background: rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.25); }
+
+  /* SECTION SHELL */
+  section{ padding: 76px 0; }
+  section.alt{ background: var(--offwhite); }
+  .kicker{
+    color: var(--red); font-weight:700; font-size:12.5px; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:10px;
+  }
+  .section-head{ max-width:680px; margin-bottom:44px; }
+  .section-head h2{ font-size: clamp(26px,3.4vw,36px); }
+  .section-head p{ color: var(--gray); font-size:16px; margin-top:12px; }
+
+  /* STAT BANNER */
+  .stat-banner{
+    display:flex; gap:40px; flex-wrap:wrap; align-items:center;
+    background: var(--navy); color:#fff; border-radius:16px; padding:36px 40px; margin-top:8px;
+  }
+  .stat-banner .num{ font-family:'Cambria',serif; font-size:56px; font-weight:bold; color:var(--red); line-height:1; }
+  .stat-banner .label{ font-size:14.5px; color: var(--ice); max-width:260px; }
+  .stat-banner .divider{ width:1px; align-self:stretch; background: rgba(255,255,255,0.15); }
+  .stat-banner .src{ font-size:11px; color: rgba(255,255,255,0.5); margin-top:6px; }
+
+  /* CARD GRID */
+  .grid{ display:grid; gap:20px; margin-top:8px; }
+  .grid.cols-3{ grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-2{ grid-template-columns: repeat(2, 1fr); }
+  @media(max-width:820px){ .grid.cols-3, .grid.cols-2{ grid-template-columns:1fr; } }
+
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:14px; padding:26px;
+  }
+  .card .icircle{
+    width:46px; height:46px; border-radius:50%; background: var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;
+  }
+  .card.flag .icircle{ background: var(--red); border-radius:10px; font-family:'Cambria',serif; font-weight:bold; }
+  .card h3{ font-size:16.5px; margin-bottom:8px; }
+  .card p{ font-size:14px; color: var(--gray); margin:0; }
+
+  /* URL BREAKDOWN */
+  .urlbar{
+    background: var(--offwhite); border:1px solid var(--line); border-radius:12px; padding:20px 24px;
+    font-family:'Courier New', monospace; font-size: clamp(15px,2.4vw,21px); margin-top:8px; word-break:break-all;
+  }
+  .urlbar .safe{ color:var(--gray); }
+  .urlbar .danger{ color: var(--red); font-weight:bold; cursor:help; border-bottom:2px dotted var(--red); }
+  .url-callouts{ display:flex; gap:16px; margin-top:20px; flex-wrap:wrap; }
+  .pill{ padding:10px 18px; border-radius:999px; font-size:13.5px; font-weight:700; }
+  .pill.bad{ background: var(--bad-bg); color: var(--red-dark); }
+  .pill.good{ background: var(--good-bg); color: var(--good); }
+
+  /* SPOT THE PHISH */
+  .phish-exercise{
+    display:grid; grid-template-columns: 1.3fr 0.9fr; gap:28px; margin-top:8px; align-items:start;
+  }
+  @media(max-width:900px){ .phish-exercise{ grid-template-columns:1fr; } }
+  .email-mock{
+    background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow: 0 12px 30px rgba(20,23,63,0.08);
+  }
+  .email-mock .bar{ background: var(--navy-deeper); color:#fff; font-size:13px; padding:12px 20px; }
+  .email-mock .body{ padding:22px 24px; }
+  .email-field{ font-size:13.5px; margin-bottom:8px; color:var(--gray); }
+  .email-field b{ color:var(--darktext); }
+  .hotspot{
+    cursor:pointer; border-bottom:2px dashed var(--red); position:relative;
+    background: rgba(230,57,70,0.06); border-radius:3px; padding:0 2px;
+  }
+  .hotspot.found{ background: var(--good-bg); border-bottom-color: var(--good); color:var(--good); font-weight:700; }
+  .email-msg{ font-size:14.5px; line-height:1.7; margin-top:14px; white-space:pre-line; }
+  .attach-chip{
+    display:inline-flex; align-items:center; gap:8px; background: rgba(230,57,70,0.06);
+    border:2px dashed var(--red); border-radius:8px; padding:8px 14px; margin-top:14px; cursor:pointer; font-size:13px; font-weight:700;
+  }
+  .attach-chip.found{ background: var(--good-bg); border-color:var(--good); color:var(--good); }
+
+  .phish-tracker{
+    background: var(--navy); color:#fff; border-radius:14px; padding:26px; position:sticky; top:90px;
+  }
+  .phish-tracker h3{ color:#fff; font-size:16px; margin-bottom:6px; }
+  .phish-tracker .count{ font-family:'Cambria',serif; font-size:40px; font-weight:bold; color: var(--red); }
+  .phish-tracker .sub{ color: var(--ice); font-size:13px; margin-bottom:18px; }
+  .phish-tracker ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .phish-tracker li{ font-size:13px; color: rgba(255,255,255,0.45); display:flex; gap:8px; align-items:flex-start; }
+  .phish-tracker li.done{ color:#fff; }
+  .phish-tracker li .mk{ flex:0 0 auto; }
+
+  /* CHECKLIST */
+  .checklist{ display:grid; grid-template-columns:1fr 1fr; gap: 14px 40px; margin-top:8px; }
+  @media(max-width:700px){ .checklist{ grid-template-columns:1fr; } }
+  .check-item{ display:flex; gap:12px; align-items:flex-start; padding:10px 0; }
+  .check-item .box{
+    flex:0 0 auto; width:26px; height:26px; border-radius:7px; background: var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:13px; margin-top:1px;
+  }
+  .check-item p{ margin:0; font-size:14.5px; }
+
+  /* QUIZ */
+  .quiz-shell{
+    background: var(--navy-deeper); border-radius:20px; padding: 44px 40px; color:#fff; position:relative; overflow:hidden;
+  }
+  .quiz-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:26px; gap:16px; flex-wrap:wrap; }
+  .quiz-top .qcount{ font-size:13px; color: var(--ice); font-weight:700; letter-spacing:0.04em; }
+  .progress-track{ flex:1; height:6px; background: rgba(255,255,255,0.12); border-radius:99px; margin:0 20px; min-width:120px; }
+  .progress-fill{ height:100%; background: var(--red); border-radius:99px; transition: width 0.3s ease; width:0%; }
+  .score-chip{ background: rgba(255,255,255,0.08); border-radius:999px; padding:6px 14px; font-size:13px; font-weight:700; }
+
+  .qcard{ display:none; }
+  .qcard.active{ display:block; animation: fadein 0.25s ease; }
+  @keyframes fadein{ from{ opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .qtext{ font-family:'Cambria',serif; font-size: clamp(19px,2.6vw,25px); margin-bottom:22px; line-height:1.3; }
+  .options{ display:flex; flex-direction:column; gap:12px; }
+  .opt{
+    text-align:left; background: rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.15);
+    color:#fff; padding:15px 18px; border-radius:10px; font-size:14.5px; cursor:pointer; font-family:'Calibri',sans-serif;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .opt:hover:not(:disabled){ border-color: var(--red); background: rgba(230,57,70,0.1); }
+  .opt:disabled{ cursor:default; }
+  .opt.correct{ background: rgba(46,168,110,0.18); border-color:#2EA86E; }
+  .opt.incorrect{ background: rgba(230,57,70,0.22); border-color: var(--red); }
+  .feedback{
+    margin-top:20px; padding:16px 18px; border-radius:10px; font-size:14px; display:none; line-height:1.5;
+  }
+  .feedback.show{ display:block; }
+  .feedback.right{ background: rgba(46,168,110,0.14); border:1px solid rgba(46,168,110,0.4); }
+  .feedback.wrong{ background: rgba(230,57,70,0.14); border:1px solid rgba(230,57,70,0.4); }
+  .quiz-nav{ margin-top:24px; display:flex; justify-content:flex-end; }
+
+  .results-card{ text-align:center; padding: 20px 0 6px; }
+  .results-card .score-big{ font-family:'Cambria',serif; font-size:64px; font-weight:bold; color: var(--red); }
+  .results-card .score-sub{ color: var(--ice); font-size:15px; margin:6px 0 22px; }
+  .results-msg{ font-size:16px; max-width:480px; margin:0 auto 26px; color:#fff; }
+
+  footer{ background: var(--navy-deeper); color: rgba(255,255,255,0.55); padding: 40px 0; font-size:13px; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  footer a{ color: var(--ice); text-decoration:none; }
+
+  @media(max-width:700px){
+    .navlinks{ display:none; }
+    section{ padding:56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand"><span class="dot"></span> Phishing Awareness Training</div>
+    <ul class="navlinks">
+      <li><a href="#learn">Learn</a></li>
+      <li><a href="#spot">Spot the Phish</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">CodeAlpha Cybersecurity Internship &middot; Task 2</span>
+    <h1>Attackers don't hack computers first.<br>They hack <em>people</em> first.</h1>
+    <p class="lede">A short, interactive module on recognizing phishing emails, fake websites, and the psychology attackers rely on — with a hands-on exercise and a knowledge-check quiz.</p>
+    <div class="cta-row">
+      <a href="#learn" class="btn btn-primary">Start Learning</a>
+      <a href="#quiz" class="btn btn-ghost">Skip to Quiz</a>
+    </div>
+  </div>
+</header>
+
+<section id="learn">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Basics</div>
+      <h2>What is phishing?</h2>
+      <p>Phishing is a form of social engineering — an attack that targets people, not systems. Instead of breaking through technical defenses, an attacker tricks someone into voluntarily handing over something valuable: a password, financial details, or system access. The name is a deliberate pun on "fishing" — the attacker casts bait and waits for someone to bite.</p>
+    </div>
+    <div class="stat-banner">
+      <div>
+        <div class="num">68%</div>
+      </div>
+      <div class="label">of breaches in 2025 involved a human element — most often, a phishing email.<div class="src">Source: Verizon 2025 Data Breach Investigations Report</div></div>
+      <div class="divider"></div>
+      <div>
+        <div class="num">$100M+</div>
+      </div>
+      <div class="label">lost by two major tech companies in a single vendor-impersonation phishing scheme.<div class="src">See real-world case studies in the accompanying deck</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Email Red Flags</div>
+      <h2>Seven signals before you click</h2>
+      <p>Most phishing emails share these traits. Spotting one is a clue — spotting several is a strong signal.</p>
+    </div>
+    <div class="grid cols-3" id="flag-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Fake Websites</div>
+      <h2>The address bar doesn't lie</h2>
+      <p>Designs can be copied pixel-for-pixel. The domain in your address bar can't be faked the same way — if you know how to read it.</p>
+    </div>
+    <div class="urlbar">
+      <span class="safe">https://</span><span class="danger" title="This is just a subdomain, not the real site">paypal.com.</span><span class="danger" title="This is the actual domain receiving your data">account-security-verify.xyz</span><span class="safe">/login</span>
+    </div>
+    <div class="url-callouts">
+      <span class="pill bad">✕ Real domain: account-security-verify.xyz</span>
+      <span class="pill good">✓ Read URLs right-to-left from the first single slash</span>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Why It Works</div>
+      <h2>The psychology behind the attack</h2>
+      <p>Attackers exploit predictable emotional triggers. Recognizing the trigger is often faster than spotting a technical flaw.</p>
+    </div>
+    <div class="grid cols-3" id="psych-grid"></div>
+  </div>
+</section>
+
+<section id="spot">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Try It Yourself</div>
+      <h2>Spot the phish</h2>
+      <p>This is a real-looking phishing email. Click on anything that looks suspicious — we'll tell you if you're right.</p>
+    </div>
+    <div class="phish-exercise">
+      <div class="email-mock">
+        <div class="bar">New Message</div>
+        <div class="body">
+          <div class="email-field">From: <span class="hotspot" data-hs="sender" data-explain="The visible name says “IT Support,” but the actual domain — micros0ft-security.net — isn't Microsoft's real domain.">IT Support &lt;admin@micros0ft-security.net&gt;</span></div>
+          <div class="email-field">Subject: <span class="hotspot" data-hs="urgency" data-explain="Manufactured urgency is designed to make you act before you think it through.">URGENT: Your account will be suspended in 24 hours</span></div>
+          <div class="email-msg">Dear <span class="hotspot" data-hs="greeting" data-explain="A generic greeting instead of your real name is common in mass-sent phishing (though targeted attacks can fake this too).">Customer</span>,
+
+We detected unusual sign-in activity. To avoid permanent suspension, verify your identity immediately by clicking the link below and <span class="hotspot" data-hs="creds" data-explain="Legitimate companies almost never ask you to re-enter your password through an emailed link like this.">entering your username and password</span>.
+
+<span class="hotspot" data-hs="link" data-explain="Hovering this link would reveal a destination that doesn't match the real company site at all.">Verify My Account Now →</span>
+
+Thank you,
+Security Team</div>
+          <div class="attach-chip" data-hs="attach" data-explain="Unexpected attachments — especially ones asking you to “enable macros” — are a common malware delivery method.">📎 recruitment_plan.xls</div>
+        </div>
+      </div>
+      <div class="phish-tracker">
+        <h3>Red flags found</h3>
+        <div class="count"><span id="found-count">0</span> / 6</div>
+        <div class="sub">Click the highlighted parts of the email</div>
+        <ul id="tracker-list"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Prevention</div>
+      <h2>Best practices checklist</h2>
+      <p>The habits that stop nearly every phishing attempt, technical or not.</p>
+    </div>
+    <div class="checklist" id="checklist"></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Knowledge Check</div>
+      <h2>Test yourself</h2>
+      <p>10 questions. Immediate feedback on every answer.</p>
+    </div>
+
+    <div class="quiz-shell">
+      <div id="quiz-active">
+        <div class="quiz-top">
+          <span class="qcount" id="qcount">Question 1 of 10</span>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <span class="score-chip" id="score-chip">Score: 0</span>
+        </div>
+        <div id="qcontainer"></div>
+      </div>
+
+      <div id="quiz-results" style="display:none;">
+        <div class="results-card">
+          <div class="score-big" id="final-score">0/10</div>
+          <div class="score-sub">Correct answers</div>
+          <div class="results-msg" id="final-msg"></div>
+          <button class="btn btn-primary" id="retry-btn">Retake Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Phishing Awareness Training — CodeAlpha Cybersecurity Internship</span>
+    <span>Fredrick Agufenwa &middot; <a href="https://github.com/Phredreeq" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+/* ---------- Email Red Flags data ---------- */
+const flags = [
+  ["1","Sender address","Display name can lie — check the actual domain behind it (micros0ft.com, not microsoft.com)."],
+  ["2","Urgency & fear","“Your account will be suspended in 24 hours” is designed to make you act before you think."],
+  ["3","Generic greeting","“Dear Customer” instead of your real name — though targeted attacks can fake this too."],
+  ["4","Suspicious links","Hover before clicking — the visible text can hide a completely different destination."],
+  ["5","Unexpected attachments","Especially files asking you to “enable macros” or “enable content.”"],
+  ["6","Requests for sensitive data","Legitimate companies almost never ask for passwords or full card numbers by email."]
+];
+const flagGrid = document.getElementById('flag-grid');
+flags.forEach(f=>{
+  const el = document.createElement('div');
+  el.className='card flag';
+  el.innerHTML = `<div class="icircle">${f[0]}</div><h3>${f[1]}</h3><p>${f[2]}</p>`;
+  flagGrid.appendChild(el);
+});
+
+/* ---------- Psychology data ---------- */
+const psych = [
+  ["👑","Authority","Impersonating a CEO, bank, or IT department to trigger automatic compliance."],
+  ["⏱","Urgency","Time pressure short-circuits careful thinking — “act now or lose access.”"],
+  ["😨","Fear","Anxiety about money, legal trouble, or a virus overrides caution."],
+  ["🤝","Trust","Impersonating a brand, coworker, or friend to lower your guard."],
+  ["❓","Curiosity","A vague, intriguing message compels a click just to find out more."],
+  ["🎁","Reciprocity / Greed","A prize or refund taps into the instinct to seize a good opportunity."]
+];
+const psychGrid = document.getElementById('psych-grid');
+psych.forEach(p=>{
+  const el = document.createElement('div');
+  el.className='card';
+  el.innerHTML = `<div class="icircle">${p[0]}</div><h3>${p[1]}</h3><p>${p[2]}</p>`;
+  psychGrid.appendChild(el);
+});
+
+/* ---------- Checklist data ---------- */
+const checklistItems = [
+  "Pause when a message creates urgency or pressure",
+  "Verify the sender's actual email address",
+  "Hover over links before clicking to preview the destination",
+  "Type known URLs manually instead of clicking email links",
+  "Never send passwords or card numbers by email",
+  "Enable multi-factor authentication everywhere possible",
+  "Use a password manager — it won't autofill on fake sites",
+  "Keep software and browsers updated",
+  "Report suspicious emails through official channels",
+  "Verify unusual requests through a second, separate channel"
+];
+const checklistEl = document.getElementById('checklist');
+checklistItems.forEach(t=>{
+  const el = document.createElement('div');
+  el.className='check-item';
+  el.innerHTML = `<div class="box">✓</div><p>${t}</p>`;
+  checklistEl.appendChild(el);
+});
+
+/* ---------- Spot the Phish interactive ---------- */
+const hotspots = document.querySelectorAll('.hotspot, .attach-chip');
+const trackerLabels = {
+  sender: "Spoofed sender domain",
+  urgency: "Manufactured urgency",
+  greeting: "Generic greeting",
+  creds: "Request for credentials",
+  link: "Suspicious link",
+  attach: "Unexpected attachment"
+};
+const foundSet = new Set();
+const trackerList = document.getElementById('tracker-list');
+Object.keys(trackerLabels).forEach(key=>{
+  const li = document.createElement('li');
+  li.id = 'track-'+key;
+  li.innerHTML = `<span class="mk">○</span> ${trackerLabels[key]}`;
+  trackerList.appendChild(li);
+});
+
+hotspots.forEach(hs=>{
+  hs.addEventListener('click', ()=>{
+    const key = hs.dataset.hs;
+    if(!foundSet.has(key)){
+      foundSet.add(key);
+      hs.classList.add('found');
+      const li = document.getElementById('track-'+key);
+      li.classList.add('done');
+      li.innerHTML = `<span class="mk">✓</span> ${trackerLabels[key]}`;
+      document.getElementById('found-count').textContent = foundSet.size;
+    }
+    hs.title = hs.dataset.explain;
+    // brief inline explain via title attribute already set; also alert-free tooltip using native title
+  });
+});
+
+/* ---------- Quiz ---------- */
+const questions = [
+  {
+    q: 'You receive an email from "support@paypal.com.security-check.xyz" saying your account is locked. What\'s the real domain sending this email?',
+    options: ["paypal.com", "security-check.xyz", "support.com", "It's legitimate, PayPal owns all of these"],
+    correct: 1,
+    explain: "The real domain is always the part directly before the first single slash, read right to left — here, that's security-check.xyz. Everything before it is just a subdomain."
+  },
+  {
+    q: "Which of these is the strongest single defense against clicking a malicious link in an email?",
+    options: ["Checking if the email has good grammar", "Typing the company's known URL manually instead of clicking", "Checking if the logo looks correct", "Replying to ask if it's real"],
+    correct: 1,
+    explain: "Manually typing a known URL (or using a saved bookmark) completely bypasses any link-spoofing trick the attacker used."
+  },
+  {
+    q: 'An email creates urgency by saying "Your account will be suspended in 1 hour." This is an example of which social engineering tactic?',
+    options: ["Reciprocity", "Social proof", "Urgency / fear", "Curiosity"],
+    correct: 2,
+    explain: "Manufactured time pressure is a classic urgency/fear tactic — it's designed to make you act before you think it through."
+  },
+  {
+    q: "True or False: A padlock icon (HTTPS) in your browser guarantees a website is safe and legitimate.",
+    options: ["True", "False"],
+    correct: 1,
+    explain: "False. HTTPS only confirms the connection is encrypted — attackers can obtain valid HTTPS certificates just as easily as anyone else."
+  },
+  {
+    q: "What should you do if you receive an unexpected MFA approval request you didn't trigger?",
+    options: ["Approve it in case it's important", "Deny it and verify through a separate, known channel", "Ignore it completely", "Reply to the notification asking who it's from"],
+    correct: 1,
+    explain: "Never approve an MFA request you didn't personally initiate. Deny it, then verify through a channel you already trust — don't reply to the prompt itself."
+  },
+  {
+    q: 'Which of these is the most reliable way to check the "real" domain in a suspicious URL?',
+    options: ["Trust the part of the URL that looks most familiar", "Read the URL right-to-left from the first single slash", 'Check if it has "https"', "Check if the page design looks professional"],
+    correct: 1,
+    explain: "Reading right-to-left from the first single slash reliably reveals the true domain, regardless of how many convincing-looking subdomains come before it."
+  },
+  {
+    q: "Which of the following should you NEVER do in response to an email, even from what looks like your bank?",
+    options: ["Call the number on the back of your card to verify", "Reply with your full password or PIN", "Delete the email", "Report it to your IT/security team"],
+    correct: 1,
+    explain: "Legitimate organizations never ask you to send your password or PIN by email — doing so hands the attacker exactly what they wanted."
+  },
+  {
+    q: 'What is "spear phishing"?',
+    options: ["Phishing conducted over the phone", "A phishing attack targeted at a specific individual using personal details", "Phishing that only targets executives", "A phishing email sent to millions of random addresses"],
+    correct: 1,
+    explain: "Spear phishing is personalized and targeted — using real details about you to be far more convincing than a generic mass email."
+  },
+  {
+    q: 'A pop-up on a website says "Your session will expire in 60 seconds — enter your password now to continue." This is most likely:',
+    options: ["A normal security feature", "A phishing tactic using manufactured urgency", "A browser bug", "Required for HTTPS sites"],
+    correct: 1,
+    explain: "Countdown-style urgency prompts pushing you to enter credentials immediately are a classic manipulation tactic, not a real security feature."
+  },
+  {
+    q: 'A colleague\'s email account is compromised, and you receive a message from their real address asking you to urgently buy gift cards for a "client." What should you do?',
+    options: ["Buy the gift cards immediately since it's a real coworker", "Ignore it completely", "Verify the request with your colleague directly through a different channel before acting", "Reply to the email asking for more details"],
+    correct: 2,
+    explain: "Even a genuine, unhacked-looking sender address can be compromised. Always verify unusual requests — especially financial ones — through a separate channel like a phone call."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+const qcontainer = document.getElementById('qcontainer');
+const qcount = document.getElementById('qcount');
+const progressFill = document.getElementById('progress-fill');
+const scoreChip = document.getElementById('score-chip');
+
+function renderQuestion(){
+  const item = questions[current];
+  answered = false;
+  qcount.textContent = `Question ${current+1} of ${questions.length}`;
+  progressFill.style.width = `${(current/questions.length)*100}%`;
+  scoreChip.textContent = `Score: ${score}`;
+
+  const optsHtml = item.options.map((opt,i)=>
+    `<button class="opt" data-idx="${i}">${opt}</button>`
+  ).join('');
+
+  qcontainer.innerHTML = `
+    <div class="qtext">${item.q}</div>
+    <div class="options">${optsHtml}</div>
+    <div class="feedback" id="feedback"></div>
+    <div class="quiz-nav"><button class="btn btn-primary" id="next-btn" style="display:none;">Next Question →</button></div>
+  `;
+
+  qcontainer.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(answered) return;
+      answered = true;
+      const idx = parseInt(btn.dataset.idx);
+      const allOpts = qcontainer.querySelectorAll('.opt');
+      allOpts.forEach(o=>o.disabled = true);
+
+      const feedback = document.getElementById('feedback');
+      if(idx === item.correct){
+        btn.classList.add('correct');
+        score++;
+        feedback.className = 'feedback show right';
+        feedback.innerHTML = `<strong>Correct.</strong> ${item.explain}`;
+      } else {
+        btn.classList.add('incorrect');
+        allOpts[item.correct].classList.add('correct');
+        feedback.className = 'feedback show wrong';
+        feedback.innerHTML = `<strong>Not quite.</strong> ${item.explain}`;
+      }
+      scoreChip.textContent = `Score: ${score}`;
+      document.getElementById('next-btn').style.display = 'inline-block';
+    });
+  });
+
+  document.getElementById('next-btn').addEventListener('click', ()=>{
+    current++;
+    if(current < questions.length){
+      renderQuestion();
+    } else {
+      showResults();
+    }
+  });
+}
+
+function showResults(){
+  progressFill.style.width = `100%`;
+  document.getElementById('quiz-active').style.display = 'none';
+  document.getElementById('quiz-results').style.display = 'block';
+  document.getElementById('final-score').textContent = `${score}/${questions.length}`;
+
+  let msg;
+  if(score === questions.length){
+    msg = "Perfect score. You're well equipped to spot phishing attempts before they cause harm.";
+  } else if(score >= 8){
+    msg = "Strong result. You've got a solid grasp of the core red flags — review any missed questions above.";
+  } else if(score >= 5){
+    msg = "Decent start. Revisit the sections above on email red flags and social engineering, then try again.";
+  } else {
+    msg = "This is exactly why this training exists. Scroll back through the module and try the quiz again.";
+  }
+  document.getElementById('final-msg').textContent = msg;
+}
+
+document.getElementById('retry-btn').addEventListener('click', ()=>{
+  current = 0; score = 0;
+  document.getElementById('quiz-results').style.display = 'none';
+  document.getElementById('quiz-active').style.display = 'block';
+  renderQuestion();
+});
+
+renderQuestion();
+</script>
+
+</body>
+</html>
